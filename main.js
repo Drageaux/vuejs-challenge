@@ -22,34 +22,37 @@ new Vue({
             var self = this;
             // do ajax
             if (keyword) {
-                self.loading=true;
+                self.loading = true;
                 self.resultList = [];
                 $.get(giphyUrl + keyword, function (data) {
-                    // if (!data) return;
+                    if (!data) {
+                        $.notify('Error searching for images', {className: 'error', position: 'bottom right'});
+                        return;
+                    }
                     for (var i = 0; i < data.data.length; i++) {
                         self.resultList.push(data.data[i].images)
                     }
-                    self.loading=false;
+                    self.loading = false;
                 }).fail(function () {
-                    alert("error");
+                    $.notify('Error searching for images', {className: 'error', position: 'bottom right'});
                 });
             }
         },
-        save: function(index){
+        save: function (index) {
             var self = this;
-            for (var i = 0; i < self.savedList.length; i++){
-                if (self.resultList[index].original.url == self.savedList[i].original.url){
-                    $.notify('Image already saved', {className:'error', position:'bottom right'})
+            for (var i = 0; i < self.savedList.length; i++) {
+                if (self.resultList[index].original.url == self.savedList[i].original.url) {
+                    $.notify('Image already saved', {className: 'error', position: 'bottom right'});
                     return
                 }
             }
             self.savedList.push(self.resultList[index]);
-            $.notify('Saved', {className:'success', position:'bottom right'})
+            $.notify('Saved', {className: 'success', position: 'bottom right'})
         },
-        remove: function(index){
-            var self=this;
+        remove: function (index) {
+            var self = this;
             self.savedList.splice(index, 1);
-            $.notify('Removed', {className:'success', position:'bottom right'})
+            $.notify('Removed', {className: 'success', position: 'bottom right'})
         }
     }
 });
