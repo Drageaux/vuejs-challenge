@@ -5,7 +5,7 @@ $("form button").click(function (e) {
     e.preventDefault();
 });
 
-var giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=';
+var giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&rating=pg&limit=30&q=';
 
 new Vue({
     el: '#app',
@@ -21,6 +21,7 @@ new Vue({
             var self = this;
             // do ajax
             if (keyword) {
+                self.resultList = [];
                 $.get(giphyUrl + keyword, function (data) {
                     // if (!data) return;
                     for (var i = 0; i < data.data.length; i++) {

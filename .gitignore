@@ -48,3 +48,6 @@ Temporary Items
 
 # IDEA
 .idea/
+
+# NPM
+node_modules/
