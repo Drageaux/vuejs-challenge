@@ -2,14 +2,30 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>VueJS</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 
 <body>
 <div id="app">
-    <p>{{ message }}</p>
+    <h1>{{ message }}</h1>
+
+    <form onkeypress="return event.keyCode != 13;">
+        <input v-model="input" placeholder="(enter keyword)">
+        <button v-on:click="searchGiphy(input)" type="button">Search</button>
+    </form>
+
+    <h3>Results</h3>
+    <div id="results">
+        <img v-for="item in resultList"v-bind:src="item.fixed_height.url">
+
+    </div>
+
+    <!--<iframe src="//giphy.com/embed/SxQDc2jZchCgM" width="480" height="368" frameBorder="0" class="giphy-embed"></iframe>-->
 </div>
 </body>
-
 <script src="main.js"></script>
 </html>

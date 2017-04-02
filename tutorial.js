@@ -59,7 +59,7 @@ Vue.component('cake-item', {
     // This prop is called cake.
     props: ['cake'],
     template: '<li>{{ cake.text }}</li>'
-})
+});
 
 
 var app7 = new Vue({
@@ -71,4 +71,4 @@ var app7 = new Vue({
             {text: 'Whatever else humans are supposed to eat'}
         ]
     }
-})
+});

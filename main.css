@@ -1,0 +1,10 @@
+#results {
+    height: 50vh;
+    width: auto;
+    overflow-y: scroll;
+}
+
+#results img {
+    margin: 1%
+}
+
