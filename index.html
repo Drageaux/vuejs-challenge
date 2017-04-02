@@ -2,8 +2,10 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>VueJS</title>
-    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-grid/grid.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-container/container.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-dimmer/dimmer.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-grid/grid.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-loader/loader.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -17,11 +19,15 @@
 
     <form onkeypress="return event.keyCode != 13;">
         <input v-model="input" placeholder="(enter keyword)">
-        <button v-on:click="searchGiphy(input)" type="button">Search</button>
+        <button v-on:click="searchGiphy(input)" type="button">SEARCH</button>
     </form>
 
-    <h3>Results</h3>
-    <div id="results" class="ui grid">
+    <h3>RESULTS</h3>
+    <div id="results" class="ui grid segment">
+        <div class="ui dimmer"
+             v-bind:class="{active: loading}">
+            <div class="ui loader"></div>
+        </div>
         <div v-for="(item,index) in resultList"
              v-on:click="save(index)"
              class="five wide mobile four wide tablet three wide computer two wide large screen column">
@@ -30,13 +36,15 @@
     </div>
 
     <br>
-    <h3>Saved Images</h3>
-    <div id="saved" class="ui grid">
+    <h3>SAVED IMAGES</h3>
+    <div id="saved" class="ui grid segment">
+        <div class="row">
             <div v-for="(item,index) in savedList"
                  v-on:click="savedList.splice(index, 1)"
                  class="column">
                 <img v-bind:src="item.fixed_height.url">
             </div>
+        </div>
     </div>
 </div>
 </body>

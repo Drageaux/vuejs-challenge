@@ -5,7 +5,7 @@ $("form button").click(function (e) {
     e.preventDefault();
 });
 
-var giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&rating=pg&limit=30&q=';
+var giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&rating=pg&limit=100&q=';
 
 new Vue({
     el: '#app',
@@ -13,7 +13,8 @@ new Vue({
         message: 'Hallo Werld!',
         input: '',
         resultList: [],
-        savedList: []
+        savedList: [],
+        loading: false
     },
     methods: {
         searchGiphy: function (keyword) {
@@ -21,12 +22,14 @@ new Vue({
             var self = this;
             // do ajax
             if (keyword) {
+                self.loading=true;
                 self.resultList = [];
                 $.get(giphyUrl + keyword, function (data) {
                     // if (!data) return;
                     for (var i = 0; i < data.data.length; i++) {
                         self.resultList.push(data.data[i].images)
                     }
+                    self.loading=false;
                 }).fail(function () {
                     alert("error");
                 });
