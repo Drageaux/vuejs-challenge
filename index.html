@@ -3,6 +3,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>VueJS</title>
     <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-grid/grid.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-container/container.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -11,7 +12,7 @@
 </head>
 
 <body>
-<div id="app">
+<div id="app" class="ui container">
     <h1>{{ message }}</h1>
 
     <form onkeypress="return event.keyCode != 13;">
@@ -21,10 +22,21 @@
 
     <h3>Results</h3>
     <div id="results" class="ui grid">
-        <div v-for="item in resultList"
+        <div v-for="(item,index) in resultList"
+             v-on:click="save(index)"
              class="five wide mobile four wide tablet three wide computer two wide large screen column">
-                <img v-bind:src="item.fixed_height.url">
+            <img v-bind:src="item.fixed_height.url">
         </div>
+    </div>
+
+    <br>
+    <h3>Saved Images</h3>
+    <div id="saved" class="ui grid">
+            <div v-for="(item,index) in savedList"
+                 v-on:click="savedList.splice(index, 1)"
+                 class="column">
+                <img v-bind:src="item.fixed_height.url">
+            </div>
     </div>
 </div>
 </body>

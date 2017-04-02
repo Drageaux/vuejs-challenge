@@ -27,11 +27,19 @@ new Vue({
                     for (var i = 0; i < data.data.length; i++) {
                         self.resultList.push(data.data[i].images)
                     }
-                    console.log(JSON.stringify(data))
                 }).fail(function () {
                     alert("error");
                 });
             }
+        },
+        save: function(index){
+            var self = this;
+            for (var i = 0; i < self.savedList.length; i++){
+                if (self.resultList[index].original.url == self.savedList[i].original.url){
+                    return
+                }
+            }
+            self.savedList.push(self.resultList[index]);
         }
     }
 });

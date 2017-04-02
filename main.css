@@ -1,23 +1,23 @@
-#results {
+.ui.grid {
     width: 100%;
-    position: relative;
     flex-direction: column;
-    max-height: calc(75vh - 50px);
     overflow-x: auto;
+    margin: 0;
+    background-color: #C7C7C7;
 }
 
-#results > div {
+.ui.grid .column {
     display: inline-block;
     vertical-align: middle;
     margin: 1%;
     min-width: 240px;
 }
 
-#results > div > img:hover {
+.ui.grid .column img:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-#results > div > img {
+.ui.grid .column img {
     width: 100%;
     height: 100%;
     max-width: none;
@@ -28,14 +28,34 @@
     object-fit: cover;
 }
 
+#saved img {
+    width: 200px;
+}
+
 @media (max-width: 768px) {
-    #results > div  {
+    .ui.grid .column {
         min-height: 180px;
+    }
+
+    #results {
+        height: 480px;
+    }
+
+    #saved {
+        height: 245px;
     }
 }
 
 @media (min-width: 768px) {
-    #results > div  {
+    .ui.grid .column {
         min-height: 210px;
+    }
+
+    #results {
+        height: 550px;
+    }
+
+    #saved {
+        height: 280px;
     }
 }
