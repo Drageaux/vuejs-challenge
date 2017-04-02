@@ -39,10 +39,17 @@ new Vue({
             var self = this;
             for (var i = 0; i < self.savedList.length; i++){
                 if (self.resultList[index].original.url == self.savedList[i].original.url){
+                    $.notify('Image already saved', {className:'error', position:'bottom right'})
                     return
                 }
             }
             self.savedList.push(self.resultList[index]);
+            $.notify('Saved', {className:'success', position:'bottom right'})
+        },
+        remove: function(index){
+            var self=this;
+            self.savedList.splice(index, 1);
+            $.notify('Removed', {className:'success', position:'bottom right'})
         }
     }
 });

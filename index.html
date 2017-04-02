@@ -7,9 +7,7 @@
     <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-grid/grid.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui-loader/loader.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 
@@ -40,7 +38,7 @@
     <div id="saved" class="ui grid segment">
         <div class="row">
             <div v-for="(item,index) in savedList"
-                 v-on:click="savedList.splice(index, 1)"
+                 v-on:click="remove(index)"
                  class="column">
                 <img v-bind:src="item.fixed_height.url">
             </div>
@@ -48,5 +46,9 @@
     </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="notify.min.js"></script>
 <script src="main.js"></script>
 </html>
