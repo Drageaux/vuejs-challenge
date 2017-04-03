@@ -5,7 +5,7 @@ $("form button").click(function (e) {
     e.preventDefault();
 });
 
-var giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&rating=pg&limit=100&q=';
+var giphyUrl = 'https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&rating=pg&limit=100&q=';
 
 new Vue({
     el: '#app',
