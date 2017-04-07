@@ -30,6 +30,7 @@ new Vue({
                         return;
                     }
                     for (var i = 0; i < data.data.length; i++) {
+                        data.data[i].images.loaded = false;
                         self.resultList.push(data.data[i].images)
                     }
                     self.loading = false;
@@ -37,6 +38,9 @@ new Vue({
                     $.notify('Error searching for images', {className: 'error', position: 'bottom right'});
                 });
             }
+        },
+        onImgLoad:function(index){
+            this.resultList[index].loaded = true;
         },
         save: function (index) {
             var self = this;

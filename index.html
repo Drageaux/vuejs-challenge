@@ -21,21 +21,27 @@
     </form>
 
     <h3>RESULTS</h3>
-    <div id="results" class="ui grid segment">
+    <div id="results" class="ui grid"
+         v-bind:class="{segment: loading}">
         <div class="ui dimmer"
              v-bind:class="{active: loading}">
             <div class="ui loader"></div>
         </div>
         <div v-for="(item,index) in resultList"
              v-on:click="save(index)"
-             class="five wide mobile four wide tablet three wide computer two wide large screen column">
-            <img v-bind:src="item.fixed_height.url">
+             class="five wide mobile four wide tablet three wide computer two wide large screen column segment">
+
+            <img v-on:load="onImgLoad(index)" v-bind:src="item.fixed_height.url">
+            <div class="ui dimmer"
+                 v-bind:class="{active: !item.loaded}">
+                <div class="ui loader"></div>
+            </div>
         </div>
     </div>
 
     <br>
     <h3>SAVED IMAGES</h3>
-    <div id="saved" class="ui grid segment">
+    <div id="saved" class="ui grid">
         <div class="row">
             <div v-for="(item,index) in savedList"
                  v-on:click="remove(index)"
