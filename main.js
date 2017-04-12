@@ -39,8 +39,28 @@ new Vue({
                 });
             }
         },
-        onImgLoad:function(index){
+        onImgLoad: function (index) {
             this.resultList[index].loaded = true;
+        },
+        onMouseOver: function (index, listName, event) {
+            if (event) {
+                var self = this;
+                if (listName == "result") {
+                    event.target.src = get(self.resultList[index], ["fixed_height", "url"])
+                } else if (listName == "saved") {
+                    event.target.src = get(self.savedList[index], ["fixed_height", "url"])
+                }
+            }
+        },
+        onMouseLeave: function (index, listName, event) {
+            if (event) {
+                var self = this;
+                if (listName == "result") {
+                    event.target.src = get(self.resultList[index], ["fixed_height_still", "url"])
+                } else if (listName == "saved") {
+                    event.target.src = get(self.savedList[index], ["fixed_height_still", "url"])
+                }
+            }
         },
         save: function (index) {
             var self = this;
@@ -50,6 +70,7 @@ new Vue({
                     return
                 }
             }
+
             self.savedList.push(self.resultList[index]);
             $.notify('Saved', {className: 'success', position: 'bottom right'})
         },
@@ -61,4 +82,19 @@ new Vue({
     }
 });
 
+
+function get(obj, listOfKeys) {
+    if (obj == null) {
+        return null
+    }
+    var value = obj;
+    for (var i = 0; i < listOfKeys.length; i++) {
+        if (value[listOfKeys[i]]) {
+            value = value[listOfKeys[i]]
+        } else {
+            return null
+        }
+    }
+    return value;
+}
 

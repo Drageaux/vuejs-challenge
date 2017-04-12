@@ -16,7 +16,7 @@
     <h1>{{ message }}</h1>
 
     <form onkeypress="return event.keyCode != 13;">
-        <input v-model="input" placeholder="(enter keyword)">
+        <input v-model="input" placeholder="(enter keyword)" @keypress.enter="searchGiphy(input)">
         <button v-on:click="searchGiphy(input)" type="button">SEARCH</button>
     </form>
 
@@ -31,7 +31,9 @@
              v-on:click="save(index)"
              class="five wide mobile four wide tablet three wide computer two wide large screen column segment">
 
-            <img v-on:load="onImgLoad(index)" v-bind:src="item.fixed_height.url">
+            <img v-on:load="onImgLoad(index)" v-bind:src="item.fixed_height_still.url"
+                 v-on:mouseover="onMouseOver(index,'result',event)"
+                 v-on:mouseleave="onMouseLeave(index,'result',event)">
             <div class="ui dimmer"
                  v-bind:class="{active: !item.loaded}">
                 <div class="ui loader"></div>
@@ -46,7 +48,9 @@
             <div v-for="(item,index) in savedList"
                  v-on:click="remove(index)"
                  class="column">
-                <img v-bind:src="item.fixed_height.url">
+                <img v-bind:src="item.fixed_height_still.url"
+                     v-on:mouseover="onMouseOver(index,'saved',event)"
+                     v-on:mouseleave="onMouseLeave(index,'saved',event)">
             </div>
         </div>
     </div>
